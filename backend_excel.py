@@ -45,7 +45,7 @@ def generar_excel():
     cell.alignment = Alignment(horizontal='center', vertical='center')
 
     # Encabezados 
-    ws.append(['Rubro', 'Unidad Res', 'Área', 'Nivel', 'Desviación', 'Criticidad', 'Estatus', 'Foto'])
+    ws.append(['Rubro', 'Unidad', 'Área', 'Nivel', 'Desviación', 'Criticidad', 'Estatus', 'Foto'])
 
     temp_imgs = []
 
