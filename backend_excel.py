@@ -45,7 +45,7 @@ def generar_excel():
     cell.alignment = Alignment(horizontal='center', vertical='center')
 
     # Encabezados 
-    ws.append(['Rubro', 'Unidad Res', 'Área', 'Nivel', 'Desviación', 'Estatus', 'Foto'])
+    ws.append(['Rubro', 'Unidad Res', 'Área', 'Nivel', 'Desviación', 'Criticidad', 'Estatus', 'Foto'])
 
     temp_imgs = []
 
@@ -56,6 +56,7 @@ def generar_excel():
             rubro['area'],
             rubro['nivel'],
             rubro['desviacion'],
+            rubro.get('criticidad', ''),  # <-- Criticidad aquí
             'Solventado' if rubro['estatus'] else 'No solventado'
         ]
         ws.append(fila)
@@ -91,10 +92,10 @@ def generar_excel():
             img = XLImage(temp_img.name)
             img.width = 110
             img.height = 160
-            ws.add_image(img, f'G{i+4}')
+            ws.add_image(img, f'H{i+4}')  # Cambia la columna a H (8va columna)
 
     # Encabezados 
-    for col in range(1, 8):
+    for col in range(1, 9):  # Ahora son 8 columnas
         c = ws.cell(row=3, column=col)
         c.font = Font(size=14, bold=True)
         c.alignment = Alignment(horizontal='center', vertical='center')
@@ -106,15 +107,16 @@ def generar_excel():
     ws.column_dimensions['D'].width = 6  
     ws.column_dimensions['E'].width = 14  
     ws.column_dimensions['F'].width = 10  
-    ws.column_dimensions['G'].width = 15 
+    ws.column_dimensions['G'].width = 12  # Criticidad
+    ws.column_dimensions['H'].width = 15  # Foto
 
    
-    for row in ws.iter_rows(min_row=4, max_row=ws.max_row, min_col=1, max_col=7):
+    for row in ws.iter_rows(min_row=4, max_row=ws.max_row, min_col=1, max_col=8):
         for idx, cell in enumerate(row):
             cell.alignment = Alignment(
                 vertical='center',
                 horizontal='center',
-                wrap_text=True if idx in [0, 1, 2, 4,5] else False  # Rubro, Unidad Responsable, Área, Desviación
+                wrap_text=True if idx in [0, 1, 2, 4, 5, 6] else False  # Rubro, Unidad Responsable, Área, Desviación, Criticidad, Estatus
             )
 
     temp_excel = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx")
