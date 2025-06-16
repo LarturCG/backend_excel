@@ -31,14 +31,14 @@ def generar_excel():
     usuario = request.form.get('usuario', 'Usuario desconocido')
 
     # Usuario
-    ws.merge_cells('A1:H1')
+    ws.merge_cells('A1:I1')
     cell_usuario = ws['A1']
     cell_usuario.value = f"Usuario: {usuario}"
     cell_usuario.font = Font(size=14, italic=True)
     cell_usuario.alignment = Alignment(horizontal='center', vertical='center')
 
     # Título 
-    ws.merge_cells('A2:H2')
+    ws.merge_cells('A2:I2')
     cell = ws['A2']
     cell.value = titulo
     cell.font = Font(size=18, bold=True)
