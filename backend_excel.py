@@ -6,6 +6,7 @@ from openpyxl.styles import Font, Alignment
 import tempfile
 import os
 import json
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -22,8 +23,9 @@ def generar_excel():
         (r.get('instalacion') for r in rubros if r.get('instalacion')), 
         'Instalación'
     )
-    from datetime import datetime
-    fecha_hora = datetime.now().strftime('%d/%m/%Y %H:%M')
+    #  hora a tu zona 
+    hora_venezuela = datetime.utcnow() - timedelta(hours=4)
+    fecha_hora = hora_venezuela.strftime('%d/%m/%Y %H:%M')
     titulo = f"{nombre_instalacion} - {fecha_hora}"
      
     usuario = request.form.get('usuario', 'Usuario desconocido')
