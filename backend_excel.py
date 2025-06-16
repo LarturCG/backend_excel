@@ -31,14 +31,14 @@ def generar_excel():
     usuario = request.form.get('usuario', 'Usuario desconocido')
 
     # Usuario
-    ws.merge_cells('A1:G1')
+    ws.merge_cells('A1:H1')
     cell_usuario = ws['A1']
     cell_usuario.value = f"Usuario: {usuario}"
     cell_usuario.font = Font(size=14, italic=True)
     cell_usuario.alignment = Alignment(horizontal='center', vertical='center')
 
     # Título 
-    ws.merge_cells('A2:G2')
+    ws.merge_cells('A2:H2')
     cell = ws['A2']
     cell.value = titulo
     cell.font = Font(size=18, bold=True)
@@ -107,8 +107,8 @@ def generar_excel():
     ws.column_dimensions['D'].width = 6  
     ws.column_dimensions['E'].width = 14  
     ws.column_dimensions['F'].width = 10  
-    ws.column_dimensions['G'].width = 12  # Criticidad
-    ws.column_dimensions['H'].width = 15  # Foto
+    ws.column_dimensions['G'].width = 12  
+    ws.column_dimensions['H'].width = 15  
 
    
     for row in ws.iter_rows(min_row=4, max_row=ws.max_row, min_col=1, max_col=8):
