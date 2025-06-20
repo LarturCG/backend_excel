@@ -45,22 +45,22 @@ def generar_excel():
     cell.alignment = Alignment(horizontal='center', vertical='center')
 
     # Encabezados 
-    ws.append(['Rubro', 'Unidad Res', 'Área', 'Nivel', 'Desviación', 'Criticidad', 'Estatus', 'Foto'])
+   ws.append(['Nivel', 'Área', 'Rubro', 'Unidad Responsable', 'Desviación', 'Criticidad', 'Estatus', 'Foto'])
 
     temp_imgs = []
 
-    for i, rubro in enumerate(rubros):
-        fila = [
-            rubro['rubro'],
-            rubro['unidad_responsable'],
-            rubro['area'],
-            rubro['nivel'],
-            rubro['desviacion'],
-            rubro.get('criticidad', ''),  # <-- Criticidad aquí
-            'Solventado' if rubro['estatus'] else 'No solventado'
-        ]
-        ws.append(fila)
-        ws.row_dimensions[i+4].height = 120 
+   for i, rubro in enumerate(rubros):
+    fila = [
+        rubro['nivel'],
+        rubro['area'],
+        rubro['rubro'],
+        rubro['unidad_responsable'],
+        rubro['desviacion'],
+        rubro.get('criticidad', ''),
+        'Solventado' if rubro['estatus'] else 'No solventado'
+    ]
+    ws.append(fila)
+    ws.row_dimensions[i+4].height = 120
 
         
         if f"imagen_{i}" in files:
