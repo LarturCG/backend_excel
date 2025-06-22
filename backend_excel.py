@@ -19,13 +19,16 @@ def generar_excel():
     wb = Workbook()
     ws = wb.active
 
-    nombre_instalacion = request.form.get('instalacion', 'Instalación')
+    nombre_instalacion = next(
+        (r.get('instalacion') for r in rubros if r.get('instalacion')), 
+        'Instalación'
+    )
+    #  hora a tu zona 
     hora_venezuela = datetime.utcnow() - timedelta(hours=4)
     fecha_hora = hora_venezuela.strftime('%d/%m/%Y %H:%M')
     titulo = f"{nombre_instalacion} - {fecha_hora}"
+     
     usuario = request.form.get('usuario', 'Usuario desconocido')
-
-    print("INSTALACION RECIBIDA:", request.form.get('instalacion'))  # Línea añadida para depuración
 
     # Usuario
     ws.merge_cells('A1:H1')
