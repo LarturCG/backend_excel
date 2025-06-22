@@ -99,13 +99,13 @@ def generar_excel():
 
         #  columnas
         ws.column_dimensions['A'].width = 7
-        ws.column_dimensions['B'].width = 10  
+        ws.column_dimensions['B'].width = 9  
         ws.column_dimensions['C'].width = 10  
-        ws.column_dimensions['D'].width = 20  
+        ws.column_dimensions['D'].width = 19  
         ws.column_dimensions['E'].width = 14  
         ws.column_dimensions['F'].width = 10  
         ws.column_dimensions['G'].width = 14  
-        ws.column_dimensions['H'].width = 14  
+        ws.column_dimensions['H'].width = 15  
 
        
         for row in ws.iter_rows(min_row=4, max_row=ws.max_row, min_col=1, max_col=8):
