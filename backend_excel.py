@@ -92,16 +92,16 @@ def generar_excel():
                 ws.add_image(img, f'H{i+4}')  # Cambia la columna a H (8va columna)
 
         # Encabezados 
-        for col in range(1, 9):  # Ahora son 8 columnas
+        for col in range(1, 9):  # Encabezados en la fila 3
             c = ws.cell(row=3, column=col)
             c.font = Font(size=14, bold=True)
-            c.alignment = Alignment(horizontal='center', vertical='center')
+            c.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
         #  columnas
         ws.column_dimensions['A'].width = 6
         ws.column_dimensions['B'].width = 8  
         ws.column_dimensions['C'].width = 10  
-        ws.column_dimensions['D'].width = 12  
+        ws.column_dimensions['D'].width = 18  
         ws.column_dimensions['E'].width = 14  
         ws.column_dimensions['F'].width = 10  
         ws.column_dimensions['G'].width = 12  
