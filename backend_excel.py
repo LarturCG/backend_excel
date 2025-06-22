@@ -19,10 +19,7 @@ def generar_excel():
     wb = Workbook()
     ws = wb.active
 
-    nombre_instalacion = next(
-        (r.get('instalacion') for r in rubros if r.get('instalacion')), 
-        'Instalación'
-    )
+    nombre_instalacion = request.form.get('instalacion', 'Instalación')
     #  hora a tu zona 
     hora_venezuela = datetime.utcnow() - timedelta(hours=4)
     fecha_hora = hora_venezuela.strftime('%d/%m/%Y %H:%M')
