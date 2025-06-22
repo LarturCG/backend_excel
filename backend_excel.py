@@ -101,7 +101,7 @@ def generar_excel():
         ws.column_dimensions['A'].width = 7
         ws.column_dimensions['B'].width = 9  
         ws.column_dimensions['C'].width = 11  
-        ws.column_dimensions['D'].width = 19  
+        ws.column_dimensions['D'].width = 17  
         ws.column_dimensions['E'].width = 14  
         ws.column_dimensions['F'].width = 13  
         ws.column_dimensions['G'].width = 10  
