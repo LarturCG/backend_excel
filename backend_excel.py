@@ -23,7 +23,7 @@ def generar_excel():
         temp_imgs = []
 
         nombre_instalacion = request.form.get('instalacion', 'Instalación')
-        #  hora a tu zona 
+        #  hora  zona 
         hora_venezuela = datetime.utcnow() - timedelta(hours=4)
         fecha_hora = hora_venezuela.strftime('%d/%m/%Y %H:%M')
         titulo = f"{nombre_instalacion} - {fecha_hora}"
@@ -45,7 +45,7 @@ def generar_excel():
         cell.alignment = Alignment(horizontal='center', vertical='center')
 
         # Encabezados 
-        ws.append(['Nivel', 'Área', 'Rubro', 'Unidad Responsable', 'Desviación', 'Criticidad', 'Estatus', 'Foto'])
+        ws.append(['Nivel', 'Área', 'Rubro', 'Unidad\nResponsable', 'Desviación', 'Criticidad', 'Estatus', 'Foto'])
 
         for i, rubro in enumerate(rubros):
             fila = [
@@ -98,10 +98,10 @@ def generar_excel():
             c.alignment = Alignment(horizontal='center', vertical='center')
 
         #  columnas
-        ws.column_dimensions['A'].width = 10
-        ws.column_dimensions['B'].width = 13  
+        ws.column_dimensions['A'].width = 6
+        ws.column_dimensions['B'].width = 8  
         ws.column_dimensions['C'].width = 10  
-        ws.column_dimensions['D'].width = 6  
+        ws.column_dimensions['D'].width = 12  
         ws.column_dimensions['E'].width = 14  
         ws.column_dimensions['F'].width = 10  
         ws.column_dimensions['G'].width = 12  
@@ -113,7 +113,7 @@ def generar_excel():
                 cell.alignment = Alignment(
                     vertical='center',
                     horizontal='center',
-                    wrap_text=True if idx in [0, 1, 2, 4, 5, 6] else False  # Rubro, Unidad Responsable, Área, Desviación, Criticidad, Estatus
+                    wrap_text=True if idx in [0, 1, 2, 3, 4, 5, 6] else False  # Rubro, Unidad Responsable, Área, Desviación, Criticidad, Estatus
                 )
 
         temp_excel = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx")
