@@ -21,8 +21,9 @@ def generar_excel():
         ws = wb.active
 
         temp_imgs = []
-
-        nombre_instalacion = request.form.get('instalacion', 'Instalación')
+        
+        usuario = request.form.get('usuario', 'Usuario_desconocido')
+        nombre_instalacion = request.form.get('instalacion', 'Instalacion')
         #  hora  zona 
         hora_venezuela = datetime.utcnow() - timedelta(hours=4)
         fecha_hora = hora_venezuela.strftime('%d/%m/%Y %H:%M')
@@ -55,7 +56,7 @@ def generar_excel():
                 rubro['unidad_responsable'],
                 rubro['desviacion'],
                 rubro.get('criticidad', ''),
-                'Solventado' if rubro['estatus'] else 'No solventado'
+               'Estatus': 'Solventado' if rubro['estatus'] else 'No solventado'
             ]
             ws.append(fila)
             ws.row_dimensions[i+4].height = 120
@@ -127,7 +128,7 @@ def generar_excel():
             except Exception:
                 pass
 
-        return send_file(temp_excel.name, as_attachment=True, download_name=titulo + '.xlsx')
+        return send_file(temp_excel.name, as_attachment=True, download_name=nombre_archivo + '.xlsx')
     except Exception as e:
         print("ERROR AL GENERAR EXCEL:", e)
         return "Error interno del servidor: " + str(e), 500
