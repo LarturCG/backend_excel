@@ -54,7 +54,7 @@ def generar_excel():
                 rubro['unidad_responsable'],
                 rubro['desviacion'],
                 rubro.get('criticidad', ''),
-               'Estatus': 'Solventado' if rubro['estatus'] else 'No solventado'
+               'Solventado' if rubro['estatus'] else 'No solventado'
             ]
             ws.append(fila)
             ws.row_dimensions[i+4].height = 120
