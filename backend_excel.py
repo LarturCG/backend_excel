@@ -128,6 +128,9 @@ def generar_excel():
             except Exception:
                 pass
 
+        fecha_archivo = hora_venezuela.strftime('%d-%m-%Y')
+        nombre_archivo = f"{usuario}_{nombre_instalacion}_({fecha_archivo})".replace(' ', '_')
+
         return send_file(temp_excel.name, as_attachment=True, download_name=nombre_archivo + '.xlsx')
     except Exception as e:
         print("ERROR AL GENERAR EXCEL:", e)
