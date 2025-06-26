@@ -28,8 +28,6 @@ def generar_excel():
         hora_venezuela = datetime.utcnow() - timedelta(hours=4)
         fecha_hora = hora_venezuela.strftime('%d/%m/%Y %H:%M')
         titulo = f"{nombre_instalacion} - {fecha_hora}"
-         
-        usuario = request.form.get('usuario', 'Usuario desconocido')
 
         # Usuario
         ws.merge_cells('A1:H1')
